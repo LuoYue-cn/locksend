@@ -1,0 +1,15 @@
+#!/usr/sbin/nft -f
+# Origin firewall: the only inbound traffic is the WireGuard tunnel and SSH from the admin address.
+flush ruleset
+table inet filter {
+  chain input {
+    type filter hook input priority 0; policy drop;
+    iif lo accept
+    ct state established,related accept
+    iifname "wg0" tcp dport { 80, 443 } accept
+    # replace with your admin address
+    ip saddr 192.0.2.10 tcp dport 22 accept
+    icmp type echo-request limit rate 5/second accept
+  }
+  chain forward { type filter hook forward priority 0; policy drop; }
+}

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex, nofollow">
+<title>接收文件</title>
+<link rel="stylesheet" href="/assets/app.b90915d30595.css" integrity="sha384-8Wba96+T/al7jnVvv/9Xci5q4iU5iUrMHBBqNCBHDNECfURXVl8TQuqeC0GR0g8t" crossorigin="anonymous">
+</head>
+<body>
+<header><a href="/">加密文件分享</a></header>
+<main>
+  <h1>接收文件</h1>
+
+  <form id="gate" class="card" hidden autocomplete="off">
+    <label for="code">取件码</label>
+    <input id="code" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="例如 river-amber-lunar-fox">
+    <p class="hint">验证通过之前，这里不会显示任何文件信息。</p>
+    <div class="actions"><button id="go" type="submit">验证</button></div>
+    <p id="working" class="hint" hidden>正在验证（需要几秒钟）…</p>
+  </form>
+
+  <div id="error" class="error" role="alert" hidden></div>
+  <div id="warn" class="warn" hidden></div>
+
+  <section id="info" class="card" hidden>
+    <dl class="meta">
+      <dt>文件名</dt><dd id="name"></dd>
+      <dt>大小</dt><dd id="size"></dd>
+    </dl>
+    <div class="actions"><button id="start" type="button">下载并解密</button></div>
+  </section>
+
+  <section id="progress" class="card" hidden>
+    <progress id="bar" value="0" max="1"></progress>
+    <p id="status" class="hint"></p>
+  </section>
+
+  <section id="save" class="card" hidden>
+    <p>文件已解密，点击保存。</p>
+    <div class="actions"><button id="save-btn" type="button">保存文件</button></div>
+    <p class="hint">如果点击后没有反应，请用系统自带浏览器（Chrome、Edge 等）打开分享链接。</p>
+  </section>
+
+  <section id="done" class="card" hidden>
+    <p id="done-msg"></p>
+  </section>
+
+  <section id="gone" class="card" hidden>
+    <p id="gone-msg"></p>
+  </section>
+</main>
+<footer>
+  <p><a href="/">发送文件</a></p>
+</footer>
+<script src="/assets/download.1f372caea779.js" integrity="sha384-Gqx0qbIv9376KB1RP/7c2ugUhyI/f5pKBw1GPZsz0r4QqIALM6uHgkVg3aYOXaCa" crossorigin="anonymous" defer></script>
+</body>
+</html>

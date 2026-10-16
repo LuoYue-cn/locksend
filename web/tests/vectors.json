@@ -1,0 +1,48 @@
+{
+  "share_id": "AQIDBAUGBwgJCgsMDQ4PEA",
+  "share_id_hex": "0102030405060708090a0b0c0d0e0f10",
+  "k_link_hex": "a0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebf",
+  "salt_hex": "303132333435363738393a3b3c3d3e3f",
+  "code_input": "River Amber_lunar-fox",
+  "code_normalized": "river-amber-lunar-fox",
+  "kdf": {
+    "v": 1,
+    "m": 65536,
+    "t": 3,
+    "p": 1,
+    "len": 32
+  },
+  "auth_hex": "91b15d2de2935fc787d37a96239aecb15e26faaa384d7cedde4050a3f4105948",
+  "k_data_hex": "a3db3cec955cc417748a079547f2e6c048aecd1b91f912ca33b45db2def10dea",
+  "k_meta_hex": "8d12e1a7205c495adf55b9bdde86c088dad91752372eb3a596ed7b0f8d609195",
+  "chunk0": {
+    "plain_hex": "68656c6c6f2c206c6f636b73656e64",
+    "is_last": 0,
+    "iv_hex": "000000000000000000000000",
+    "aad_hex": "76310102030405060708090a0b0c0d0e0f100000000000",
+    "cipher_hex": "fafa6b40504c102ac77bc7d2e8765de730abd97639d6fb892a753171295e35"
+  },
+  "chunk1": {
+    "plain_hex": "7461696c",
+    "is_last": 1,
+    "iv_hex": "000000000000000000000001",
+    "aad_hex": "76310102030405060708090a0b0c0d0e0f100000000101",
+    "cipher_hex": "ff2d492bc8aced781010fffbdcbf6c9e095779d6"
+  },
+  "empty_file": {
+    "is_last": 1,
+    "iv_hex": "000000000000000000000000",
+    "aad_hex": "76310102030405060708090a0b0c0d0e0f100000000001",
+    "cipher_hex": "1482ae3f630e8172f2076eab4351b6ed"
+  },
+  "iv_index_2_pow_32_plus_2_hex": "000000000000000100000002",
+  "meta_json": "{\"name\":\"report.pdf\",\"size\":15,\"mime\":\"application/pdf\",\"chunk_size\":4194304,\"chunk_count\":1,\"v\":1}",
+  "meta_iv_hex": "707172737475767778797a7b",
+  "enc_meta_hex": "707172737475767778797a7b4fd0eeedd5bd0f1c392ae2d942388bb9c7dcaa4b4f1732014682312b3164cbf33902ee31545dfc3dbe52b0190097b46e7d95435fc35db488ac7ce2cdd418c7a71aa3fe8736c72dc4857e80c7e8efa0faec23e89252e918a5a83529db0f0ee40c5437d57c43d5e9268596f64f62b723d241f4bd",
+  "hkdf_rfc5869_case1": {
+    "ikm_hex": "0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b",
+    "salt_hex": "000102030405060708090a0b0c",
+    "info_hex": "f0f1f2f3f4f5f6f7f8f9",
+    "okm_hex": "3cb25f25faacd57a90434f64d0362f2a2d2d0a90cf1a5a4c5db02d56ecc4c5bf34007208d5b887185865"
+  }
+}

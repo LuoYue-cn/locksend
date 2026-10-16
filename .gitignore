@@ -1,0 +1,7 @@
+node_modules/
+server/vendor/
+server/data/*
+!server/data/.gitkeep
+.phpunit.cache/
+.phpunit.result.cache
+dist/

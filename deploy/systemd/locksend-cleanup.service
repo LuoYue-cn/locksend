@@ -1,0 +1,15 @@
+[Unit]
+Description=LockSend cleanup (expire shares, delete orphaned ciphertext)
+
+[Service]
+Type=oneshot
+User=www-data
+Group=www-data
+EnvironmentFile=-/etc/locksend/env
+Environment=LOCKSEND_DATA_DIR=/var/lib/locksend
+ExecStart=/usr/bin/php /var/www/locksend/server/bin/cleanup.php
+NoNewPrivileges=yes
+ProtectSystem=strict
+ReadWritePaths=/var/lib/locksend
+PrivateTmp=yes
+ProtectHome=yes

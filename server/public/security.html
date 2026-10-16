@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>安全说明与局限</title>
+<link rel="stylesheet" href="/assets/app.b90915d30595.css" integrity="sha384-8Wba96+T/al7jnVvv/9Xci5q4iU5iUrMHBBqNCBHDNECfURXVl8TQuqeC0GR0g8t" crossorigin="anonymous">
+</head>
+<body>
+<header><a href="/">加密文件分享</a></header>
+<main>
+  <h1>安全说明与局限</h1>
+  <p>不存在绝对的安全。下面如实说明这个服务做了什么、没做什么。</p>
+
+  <div class="card">
+    <h2>做了什么</h2>
+    <ul>
+      <li>文件、文件名、大小和类型都在你的浏览器里加密，服务器只保存密文。</li>
+      <li>下载需要两样东西：链接 <code>#</code> 之后的密钥，以及单独告知对方的取件码。只拿到其中一样无法解密。</li>
+      <li>取件码连续输错到上限后，分享会被销毁（或冻结 24 小时，取决于发送者的设置）。</li>
+      <li>下载完成后默认自动销毁分享。</li>
+      <li>服务器不记录访问者 IP；页面不加载任何第三方资源。</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>没有防御的情况</h2>
+    <ul>
+      <li><strong>服务器被入侵后替换了网页脚本。</strong>这是网页端到端加密固有的弱点。我们用 SRI、严格的 CSP 并公示前端构建哈希（<a href="/build-manifest.json">build-manifest.json</a>）来降低风险，但无法消除。</li>
+      <li>你或对方自己泄露了链接和取件码。</li>
+      <li>设备被木马或恶意扩展控制。</li>
+      <li>流量分析：上传和下载的时间与数据量对网络观察者是可见的。</li>
+      <li>任何持有链接的人故意输错取件码，可以让文件被销毁。这是为了防止暴力猜测而接受的取舍。</li>
+    </ul>
+  </div>
+  <p><a href="/">返回首页</a></p>
+</main>
+</body>
+</html>

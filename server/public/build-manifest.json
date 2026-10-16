@@ -1,0 +1,18 @@
+{
+  "algorithm": "sha256",
+  "files": {
+    "admin.html": "fcfdeabb9c4c2565d2139d7e92045eb4e0d65fce7623c86c90d88a4a3b513e26",
+    "argon2.wasm (embedded)": "0c2149886c13e4eae4a6ca25ee71d47423c5c8740a874cf04ff816d1b2c901d7",
+    "assets/admin.35c4e08c07de.js": "35c4e08c07de9f567cf7b39ef984ef304d32b97b256a32083a8aeea722c27b71",
+    "assets/app.b90915d30595.css": "b90915d305952858a677266379a49ba07c7e9e2006cacd5e3d6640a50ab33ce6",
+    "assets/download.1f372caea779.js": "1f372caea779fc69a8153e1e6f080772e8ae8ec580906cb5de134ae19da147d7",
+    "assets/install.aeaf97a7f6d0.js": "aeaf97a7f6d00a142113878ad3cb7534653294ae984605fb35cffb7657247da8",
+    "assets/upload.5195d9e76d06.js": "5195d9e76d0614da3070f6acd5880bb5c2d9ac2eb07a7bd762c2ed4d89b987c1",
+    "assets/zxcvbn.f42c651f4050.js": "f42c651f40506acb6b662490f338dd47a5951d3312039c4ab8fe5090484f351a",
+    "index.html": "1028728154077d952cc1bda54b3fdfbeffdc758414d6fb8345fe2bb0c68712d0",
+    "install.html": "1a2b941b1ed9b6bbfd95144592eddb83deaf17709c9486b06beada5e16d9afd6",
+    "s.html": "922ff8a73620e7b780d2130b59f2ec89161f9317446ea422543a3e645a3c9000",
+    "security.html": "174a52b6c2f210fdc14fb32ab6a166d69d3ec5c91c20579e00ffdd02d9c9ea76",
+    "sw.js": "fe65c5d5083f0dea4cf2437796499ad0d7e319eedeaf994c3b81f07aaa5b6d56"
+  }
+}

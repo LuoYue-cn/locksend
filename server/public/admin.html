@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex, nofollow">
+<title>管理</title>
+<link rel="stylesheet" href="/assets/app.b90915d30595.css" integrity="sha384-8Wba96+T/al7jnVvv/9Xci5q4iU5iUrMHBBqNCBHDNECfURXVl8TQuqeC0GR0g8t" crossorigin="anonymous">
+</head>
+<body>
+<header class="wide"><a href="/">加密文件分享</a><nav><a href="/">返回首页</a></nav></header>
+<main class="wide">
+  <h1>管理</h1>
+
+  <form id="login" class="card" autocomplete="off">
+    <label for="pw">管理员密码</label>
+    <input id="pw" type="password" autocomplete="current-password" required>
+    <label for="totp">动态验证码</label>
+    <input id="totp" type="text" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" required>
+    <div class="actions"><button id="go" type="submit">登录</button></div>
+    <p id="working" class="hint" hidden>正在验证（需要几秒钟）…</p>
+  </form>
+
+  <div id="error" class="error" role="alert" hidden></div>
+
+  <section id="panel" hidden>
+    <div class="card">
+      <p class="hint">这里只能看到文件名（在你的浏览器里解密）和有效期，并可以删除。看不到文件内容、大小、访问者或下载情况。</p>
+      <table>
+        <thead><tr><th>文件名</th><th>分享 ID</th><th>创建时间</th><th>到期时间</th><th></th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <p id="empty" class="hint" hidden>当前没有有效的分享。</p>
+      <div class="actions"><button id="refresh" type="button" class="secondary">刷新</button><button id="logout" type="button" class="secondary">退出登录</button></div>
+    </div>
+  </section>
+</main>
+<script src="/assets/admin.35c4e08c07de.js" integrity="sha384-DnZaK+wsdifJz242bA228/2V5JDYTZ5QMYAMN6fL8HfxxSy8Q74dDqSj5EPY/Fbf" crossorigin="anonymous" defer></script>
+</body>
+</html>

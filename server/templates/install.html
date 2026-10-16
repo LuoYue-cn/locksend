@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex, nofollow">
+<title>安装</title>
+<link rel="stylesheet" href="/assets/app.b90915d30595.css" integrity="sha384-8Wba96+T/al7jnVvv/9Xci5q4iU5iUrMHBBqNCBHDNECfURXVl8TQuqeC0GR0g8t" crossorigin="anonymous">
+</head>
+<body>
+<header><a href="/">加密文件分享</a></header>
+<main>
+  <h1>首次安装</h1>
+  <p class="hint">安装完成后，这个页面会自动关闭。</p>
+
+  <div class="card">
+    <strong>环境检查</strong>
+    <ul id="checks" class="checks"></ul>
+  </div>
+
+  <form id="step1" class="card" hidden autocomplete="off">
+    <label for="token">安装令牌</label>
+    <input id="token" type="text" autocomplete="off" spellcheck="false" required>
+    <p id="token-hint" class="hint">在服务器上运行 <code>php bin/admin-setup-token.php</code> 获取，令牌只显示一次。</p>
+    <label for="pw">管理员密码（至少 12 个字符）</label>
+    <input id="pw" type="password" autocomplete="new-password" required>
+    <label for="pw2">再输入一次</label>
+    <input id="pw2" type="password" autocomplete="new-password" required>
+    <p class="hint">密码在浏览器中处理，服务器不会收到明文密码。忘记密码无法找回，已加密的文件名将无法再显示。</p>
+    <div class="actions"><button id="next" type="submit">下一步</button></div>
+  </form>
+
+  <form id="step2" class="card" hidden autocomplete="off">
+    <p>用认证器应用（如 Aegis、Google Authenticator）添加下面的密钥，然后输入显示的 6 位验证码。</p>
+    <label>密钥</label>
+    <code id="secret" class="secret mono"></code>
+    <details><summary>otpauth 链接</summary><code id="uri" class="secret mono"></code></details>
+    <label for="totp">6 位验证码</label>
+    <input id="totp" type="text" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="off" required>
+    <div class="actions"><button id="finish" type="submit">完成安装</button></div>
+    <p id="working" class="hint" hidden>正在生成密钥（需要几秒钟）…</p>
+  </form>
+
+  <div id="error" class="error" role="alert" hidden></div>
+  <div id="blocked" class="error" hidden>无法读取安装状态。</div>
+
+  <section id="done" class="card" hidden>
+    <p>安装完成，此页面已关闭。</p>
+    <p><a href="/">进入首页</a>　<a href="/admin">管理登录</a></p>
+  </section>
+</main>
+<script src="/assets/install.aeaf97a7f6d0.js" integrity="sha384-RokwPfXEvfEI7CI/yRSmuNm4GVH3u2W3w12mRMY9eFeBw2Xlwg5msSv6CqwtMvWW" crossorigin="anonymous" defer></script>
+</body>
+</html>

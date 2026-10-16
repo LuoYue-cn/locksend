@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>加密文件分享</title>
+<link rel="stylesheet" href="/assets/app.b90915d30595.css" integrity="sha384-8Wba96+T/al7jnVvv/9Xci5q4iU5iUrMHBBqNCBHDNECfURXVl8TQuqeC0GR0g8t" crossorigin="anonymous">
+</head>
+<body>
+<header><a href="/">加密文件分享</a></header>
+<main>
+  <h1>发送文件</h1>
+  <p class="hint">文件在你的浏览器里加密后才上传。服务器只保存密文，看不到文件名、大小和内容。</p>
+
+  <form id="form" class="card" hidden>
+    <label for="file">选择文件</label>
+    <input id="file" type="file">
+    <p id="file-info" class="hint"></p>
+    <p id="file-limit" class="hint"></p>
+
+    <div class="row">
+      <div>
+        <label for="ttl">保留时间</label>
+        <select id="ttl"></select>
+      </div>
+      <div>
+        <label for="max-fails">取件码最多可错</label>
+        <select id="max-fails"><option value="3">3 次</option><option value="5" selected>5 次</option><option value="10">10 次</option></select>
+      </div>
+    </div>
+    <label for="fail-action">错误次数用尽后</label>
+    <select id="fail-action"><option value="destroy" selected>永久销毁分享</option><option value="freeze_24h">冻结 24 小时</option></select>
+    <label class="check"><input id="burn" type="checkbox" checked> 下载完成后自动销毁</label>
+
+    <details>
+      <summary>高级选项</summary>
+      <label for="words">取件码长度</label>
+      <select id="words"><option value="4" selected>4 个词（默认）</option><option value="6">6 个词（更高安全）</option></select>
+      <label for="custom">自定义取件码（可选）</label>
+      <input id="custom" type="text" autocomplete="off" spellcheck="false">
+      <p id="custom-hint" class="hint">留空则自动生成。自定义口令需至少 12 个字符且强度评分达到 4。</p>
+    </details>
+
+    <div class="actions"><button id="go" type="submit">加密并上传</button></div>
+  </form>
+
+  <div id="error" class="error" role="alert" hidden></div>
+
+  <section id="progress" class="card" hidden>
+    <progress id="bar" value="0" max="1"></progress>
+    <p id="status" class="hint"></p>
+    <div class="actions">
+      <button id="retry" type="button" hidden>继续</button>
+      <button id="cancel" type="button" class="secondary">取消</button>
+    </div>
+  </section>
+
+  <section id="result" class="card" hidden>
+    <h1>上传完成</h1>
+    <p>请把下面两项<strong>分开</strong>发给对方（例如链接走一个渠道，取件码走另一个渠道）。缺少任何一项都无法下载。</p>
+    <label>下载链接</label>
+    <code id="link" class="secret mono"></code>
+    <div class="actions"><button id="copy-link" type="button" class="secondary">复制链接</button></div>
+    <label>取件码</label>
+    <code id="code" class="secret big mono"></code>
+    <div class="actions"><button id="copy-code" type="button" class="secondary">复制取件码</button></div>
+    <p class="hint">有效期至 <span id="expires"></span>。取件码和链接不会保存在服务器上，关闭此页面后无法找回。</p>
+    <div class="actions"><button id="again" type="button">再发一个</button></div>
+  </section>
+</main>
+<footer>
+  <p>这是端到端加密工具，不是绝对安全的保证；请阅读 <a href="/security.html">安全说明与局限</a>。</p>
+</footer>
+<script src="/assets/upload.5195d9e76d06.js" integrity="sha384-OTcklt6YNw/V7pToZSL0wLACPRJvk5+J4AoB+rjx6/QqT8wfVTtVXGE+WShJnd07" crossorigin="anonymous" defer></script>
+</body>
+</html>

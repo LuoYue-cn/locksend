@@ -1,0 +1,17 @@
+[Unit]
+Description=LockSend memory-only Redis
+After=network.target
+
+[Service]
+User=redis
+Group=www-data
+RuntimeDirectory=redis
+RuntimeDirectoryMode=0775
+ExecStart=/usr/bin/redis-server /etc/locksend/redis.conf
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target
