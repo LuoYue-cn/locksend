@@ -1,5 +1,7 @@
 # LockSend
 
+[中文](README.zh-CN.md)
+
 Anonymous file sharing with browser-side end-to-end encryption (files up to 500 MB by default). The server stores only ciphertext. Downloading needs both the
 link (its `#` part holds a 256-bit key that is never sent) and a generated pick-up code (4 or 6 words). Too many wrong codes
 destroy the share; by default a share is destroyed after one confirmed download.
@@ -12,11 +14,11 @@ against, and what has and has not been tested.
 * First run: open `/install` (needs a one-time token from `server/bin/admin-setup-token.php`). The page closes itself when installation completes.
 
 ```
-docs/     SECURITY PROTOCOL DEPLOY PRIVACY ABUSE QUESTIONS DEPENDENCIES
+docs/     SECURITY PROTOCOL DEPLOY PRIVACY ABUSE QUESTIONS DEPENDENCIES  (Chinese versions in docs/zh-CN/)
 server/   public/ (entry index.php + built assets)  src/  migrations/  bin/  tests/  templates/ (built install page)
 web/      src/ (crypto, upload, download, admin, install, sw)  tests/  build.mjs
 deploy/   nginx  php-fpm  redis  relay  wireguard  systemd
-scripts/  audit_privacy.sh  e2e/
+scripts/  audit_privacy.sh  e2e/  package.sh  check-nginx-tls.sh
 ```
 
 ## Quick start (development)

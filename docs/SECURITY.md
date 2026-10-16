@@ -1,5 +1,7 @@
 # Security model and limitations
 
+[中文](zh-CN/SECURITY.md)
+
 No system is "100 % secure". This document states what LockSend is designed to protect against, what it does not,
 and what remains unverified. Read it together with `PROTOCOL.md`.
 
@@ -38,6 +40,8 @@ and what remains unverified. Read it together with `PROTOCOL.md`.
   server has served every chunk index to that download session. A malicious client can fetch all chunks and never
   confirm (the share then lives until expiry or max completions), but it cannot make the server burn early unless it
   fetched everything. A lost confirmation (browser crash after saving) leaves the share available.
+  On phones and in the in-memory fallback the page cannot tell whether the browser really stored the file; it reports
+  completion after the user taps "保存文件".
 * **Server-side secrets.** `server_pepper` should come from the environment (`LOCKSEND_PEPPER`). If it is generated into
   `data/secrets/pepper` (the fallback), a full server-disk compromise also yields it; the DB alone still does not.
   Losing the pepper invalidates all existing shares and the admin login.
@@ -49,6 +53,9 @@ and what remains unverified. Read it together with `PROTOCOL.md`.
   buckets are an HMAC of the address under a random key held only in Redis (memory, `save ""`, expires after ≤ 2 days),
   so they cannot be reversed after expiry. Behind the relay every visitor shares the tunnel address, so those limits are
   effectively global; see `deploy/relay/README.md`.
+  **If you use the Baota (宝塔) panel:** its "site monitoring report" records every request through an
+  `access_log syslog:…site_total` line in the site configuration, including the visitor's real IP forwarded by Cloudflare.
+  It must be turned off for this site.
 * **Redis loss** (restart) invalidates in-flight upload/download sessions, rate counters, and admin sessions; clients
   can resume uploads (chunks are on disk) and re-unlock downloads. Shares themselves live in the database.
 * **Memory / device limits.** Argon2id with 64 MiB can fail on very low-memory phones. Browsers without a usable
@@ -82,12 +89,17 @@ Tested in this repository (all re-runnable, see `docs/DEPLOY.md` section 10):
   any request); a **490 MB file** uploaded (117 chunks, exact ciphertext size on disk), streamed back and decrypted with
   identical SHA-256, PHP-FPM memory unchanged, ciphertext deleted after the confirmed download; no plaintext names,
   codes or keys anywhere under the data directory; no third-party requests. The same suite also passes on the simpler
-  `php-cgi` stack.
+  `php-cgi` stack. After that run, download-path cases were added and run on the `php-cgi` stack only (55 checks in total):
+  the save-file dialog; a download manager answering `/dl/<key>` with 404 or an error (the page falls back to another way of
+  saving); a save dialog that rejects instantly as "cancelled"; a closed dialog; and a phone browser profile where the file is
+  decrypted and saved from a separate "保存文件" tap. The new cases were checked to fail on the previous code.
 * `scripts/audit_privacy.sh` static checks (verified to fail when violations are injected).
 
 Problems these runs found and fixed: the shipped FPM pool file had an unquoted `base64:…=` pepper that makes PHP-FPM
 refuse to start; `RedisKv` could not parse the `unix:///…` socket URL used by the shipped configuration; a test helper
-needed `intl`, which PHP 8.3 does not enable by default.
+needed `intl`, which PHP 8.3 does not enable by default; some phone browsers expose a save-file dialog that rejects at once as
+"cancelled" and download managers can hijack the streamed download, which made downloads fail on a real deployment (see
+QUESTIONS.md item 11).
 
 Not tested / not claimed:
 

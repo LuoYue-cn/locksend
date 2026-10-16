@@ -1,5 +1,7 @@
 # Abuse handling
 
+[中文](zh-CN/ABUSE.md)
+
 An anonymous, end-to-end encrypted service cannot inspect content, so abuse handling relies on limits and on the operator's ability to delete.
 Decide your policy and legal position before opening the service to the public.
 

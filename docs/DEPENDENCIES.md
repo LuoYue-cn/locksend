@@ -1,5 +1,7 @@
 # Dependencies
 
+[中文](zh-CN/DEPENDENCIES.md)
+
 All versions are pinned by lock files (`server/composer.lock`, `web/package-lock.json`). Nothing is fetched at runtime.
 
 ## Runtime (server, Composer)

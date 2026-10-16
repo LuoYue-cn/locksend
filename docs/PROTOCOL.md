@@ -1,5 +1,7 @@
 # LockSend protocol (version 1)
 
+[中文](zh-CN/PROTOCOL.md)
+
 All cryptography runs in the browser with WebCrypto plus a pinned Argon2id WASM build. No custom primitives.
 The reference implementation is `web/src/crypto/`; fixed vectors are in `web/tests/vectors.json` and are
 recomputed independently in PHP (libsodium, `hash_hkdf`, OpenSSL) by `server/tests/VectorsTest.php`.

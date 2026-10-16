@@ -1,5 +1,7 @@
 # Privacy
 
+[中文](zh-CN/PRIVACY.md)
+
 What the service stores, for how long, and what it deliberately does not.
 
 ## Stored on the server
@@ -23,11 +25,15 @@ decrypts it locally, in the admin's browser.
 * Short-lived rate limiting uses `HMAC(random key held in Redis, address)`, truncated; it exists only in memory and expires (≤ 2 days).
 * Behind the optional relay, the origin never sees visitor addresses at all; the relay's nginx is also configured with `access_log off`.
 * Your hosting provider, upstream network, and the relay operator can still observe connections; this is outside the application's control.
+* **With the Baota (宝塔) panel**, turn off the "site monitoring report" for this site: through `access_log syslog:…site_total` in the site
+  configuration it records every request, including the visitor's real IP forwarded by Cloudflare (see the Baota appendix in the Chinese
+  [DEPLOY.md](zh-CN/DEPLOY.md)).
 
 ## Third parties
 
 None at runtime: no CDN, web fonts, analytics, captcha, or remote scripts. All assets are served from the same origin with SRI;
 `Referrer-Policy: no-referrer`. The end-to-end test asserts that the pages make no request to any other host.
+(If you put the site behind Cloudflare, turn off its Web Analytics, which otherwise injects a third-party analytics script.)
 
 ## Cookies and browser storage
 

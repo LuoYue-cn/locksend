@@ -1,5 +1,7 @@
 # Open questions and decisions taken
 
+[中文](zh-CN/QUESTIONS.md)
+
 Where the specification was silent, ambiguous or conflicting, the safer option below was chosen and work continued.
 Each item can be revisited by the operator.
 
@@ -9,7 +11,8 @@ Each item can be revisited by the operator.
    `server/migrations/001_init.sql`. The threat-model/limitations content that "section 14" presumably meant is in
    `docs/SECURITY.md`.
 2. **PHP version.** The header says PHP 8.1, the stack section says 8.3. Decision: `composer.json` requires `>=8.3`, code
-   uses `declare(strict_types=1)`. Only a PHP 8.5 CLI was available for testing, so FPM/8.3 are untested.
+   uses `declare(strict_types=1)`. Development started on a PHP 8.5 CLI; the suite was later re-run on PHP 8.3.35 built
+   from source (with FPM), see SECURITY.md "Verification status".
 3. **Install flow.** Not specified beyond "an install page that closes itself". Decision: a one-time setup token is created
    on the server (`php server/bin/admin-setup-token.php`, only its SHA-256 is stored); the install page checks the
    environment, takes the token, sets the admin password (processed in the browser), and enrols TOTP. On success
@@ -40,7 +43,8 @@ Each item can be revisited by the operator.
 12. **zxcvbn.** Required for custom codes, but it is ~800 KB. Decision: a separate content-hashed file loaded lazily with SRI
     only when a custom code is typed, so the default page stays small.
 13. **`wasm-unsafe-eval` in CSP.** Needed to compile the Argon2 WASM module. No `unsafe-eval` or `unsafe-inline` is allowed.
-14. **Deployment targets.** Docker, FPM, TLS and WireGuard files are provided but could not be executed in the build sandbox (see SECURITY.md).
+14. **Deployment targets.** The nginx/TLS 1.3 files, the PHP-FPM pool file and the Redis settings were executed and tested
+    (see SECURITY.md). The Docker image, `docker-compose.yml`, systemd units, relay and WireGuard files are provided but were never executed.
 15. **Language.** The UI is in Chinese (the task language); strings are inline in `web/src/` and not yet externalised.
 16. **File size limit (changed by the product owner).** The original decision was "no limit on file size". After a
     4.5 GiB browser test showed the upload page's memory growing with file size (about +3.9 GiB in Chromium), the owner

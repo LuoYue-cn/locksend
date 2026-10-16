@@ -1,8 +1,10 @@
 # Deployment
 
+[中文](zh-CN/DEPLOY.md)
+
 Target: Debian/Ubuntu, nginx, PHP 8.3-FPM (`sodium`, `pdo_sqlite`, `redis` recommended), Redis, optional relay + WireGuard.
-Only the commands under "Local test" were actually executed while building this project; everything else is provided
-configuration that you must review and test in your environment (see `SECURITY.md`, "Verification status").
+The commands under "Local test" and the nginx/PHP-FPM/Redis files were executed while building this project; the Docker, relay,
+WireGuard and systemd files were not. Review and test everything in your own environment (see `SECURITY.md`, "Verification status").
 
 ## 1. Build
 
@@ -77,7 +79,8 @@ environment); treat as a starting point. `LOCKSEND_PEPPER` is required.
 
 Set `LOCKSEND_DB_DSN=mysql:host=…;dbname=locksend;charset=utf8mb4`, `LOCKSEND_DB_USER`, `LOCKSEND_DB_PASS`, and install `pdo_mysql`.
 Schema and queries are portable (binary values are stored as base64url text; `Db::forUpdate()` adds `FOR UPDATE`).
-Not tested; run the PHPUnit suite against a scratch MariaDB before relying on it.
+The whole PHPUnit suite (including the parallel-process race tests) passes against MariaDB 11.4.5; see section 10 for how to run it
+against your own server before relying on it. The browser end-to-end suite was run on SQLite only.
 
 ## 9. Configuration reference (environment)
 
