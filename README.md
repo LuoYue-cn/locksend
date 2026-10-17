@@ -2,6 +2,11 @@
 
 [中文](README.zh-CN.md)
 
+**Live instance: <https://locksend.h666h.com>** (the author's own deployment, files up to 500 MB, kept for at most 30 days).
+It is run by one person and is not independently audited; for anything sensitive, deploy your own copy (see
+[docs/DEPLOY.md](docs/DEPLOY.md)). Although the files are encrypted in your browser, you still have to trust whoever serves the
+page (see "What it does NOT defend against" in [docs/SECURITY.md](docs/SECURITY.md)).
+
 Anonymous file sharing with browser-side end-to-end encryption (files up to 500 MB by default). The server stores only ciphertext. Downloading needs both the
 link (its `#` part holds a 256-bit key that is never sent) and a generated pick-up code (4 or 6 words). Too many wrong codes
 destroy the share; by default a share is destroyed after one confirmed download.
